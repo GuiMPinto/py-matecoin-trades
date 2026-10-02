@@ -2,7 +2,7 @@ import json
 from decimal import Decimal
 
 
-def calculate_profit():
+def calculate_profit() -> None:
     with open("trades.json", "r") as file:
         trades = json.load(file)
 
@@ -29,6 +29,7 @@ def calculate_profit():
 
     with open("profit.json", "w") as file:
         json.dump(result, file, indent=4)
+
 
 if __name__ == "__main__":
     calculate_profit()
