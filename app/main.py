@@ -6,8 +6,7 @@ def calculate_profit() -> None:
     with open("trades.json", "r") as file:
         trades = json.load(file)
 
-    total_bought = Decimal("0")
-    total_sold = Decimal("0")
+    matecoin_account = Decimal("0")
     earned_money = Decimal("0")
 
     for trade in trades:
@@ -15,12 +14,8 @@ def calculate_profit() -> None:
         bought = Decimal(trade["bought"]) if trade["bought"] else Decimal("0")
         sold = Decimal(trade["sold"]) if trade["sold"] else Decimal("0")
 
-        total_bought += bought
-        total_sold += sold
-
         earned_money += (sold * price) - (bought * price)
-
-    matecoin_account = total_bought - total_sold
+        matecoin_account += bought - sold
 
     result = {
         "earned_money": str(earned_money),
